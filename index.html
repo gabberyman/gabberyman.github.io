@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gabriel Ryman – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F4F1EB;
+      --ink:      #1A1A18;
+      --muted:    #6B6860;
+      --accent:   #1A5CFF;
+      --rule:     #D8D4CC;
+      --card-bg:  #FDFCF9;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--rule);
+      animation: fadeUp .6s ease both;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+    }
+
+    .name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-top: .6rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      text-align: right;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .contact-list a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: border-color .2s, color .2s;
+    }
+
+    .contact-list a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--rule);
+      animation: fadeUp .6s .1s ease both;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    /* ── Sections ── */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      animation: fadeUp .6s .2s ease both;
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 1.08rem;
+      max-width: 600px;
+      color: var(--ink);
+    }
+
+    /* ── Projects ── */
+    .project-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.6rem 1.8rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: .5rem;
+    }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+    }
+
+    .project-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #EBF0FF;
+      padding: .2rem .6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .project-desc {
+      font-size: .92rem;
+      color: var(--muted);
+      margin-bottom: .8rem;
+    }
+
+    .project-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: .8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .76rem;
+      letter-spacing: .04em;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+
+    .project-link:hover { border-color: var(--accent); }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: .8rem;
+    }
+
+    .skill-item {
+      font-family: 'DM Mono', monospace;
+      font-size: .8rem;
+      letter-spacing: .04em;
+      color: var(--ink);
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: .7rem 1rem;
+    }
+
+    .skill-level {
+      display: block;
+      font-size: .68rem;
+      color: var(--muted);
+      margin-top: .2rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* ── Education ── */
+    .edu-entry { margin-bottom: 1.4rem; }
+    .edu-entry:last-child { margin-bottom: 0; }
+
+    .edu-school {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+    }
+
+    .edu-detail {
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem 0 3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 560px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .contact-list { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1 class="name">Gabriel<br><em>Ryman</em></h1>
+        <p class="tagline">Computer Science &amp; Engineering · KTH</p>
+      </div>
+      <ul class="contact-list">
+        <li><a href="mailto:gabberyman05@gmail.com">gabberyman05@gmail.com</a></li>
+        <li><a href="https://github.com/DITT-ANVÄNDARNAMN" target="_blank">github.com/DITT-ANVÄNDARNAMN</a></li>
+        <li><a href="https://linkedin.com/in/DITT-NAMN" target="_blank">linkedin.com/in/DITT-NAMN</a></li>
+        <li>Stockholm, Sweden</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+  </nav>
+
+  <!-- About -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <p class="about-text">
+      I'm a second-year Computer Science &amp; Engineering student at KTH Royal Institute of Technology,
+      with a focus on systems programming and software development. I enjoy working close to the hardware
+      as well as building user-facing applications, and I'm always looking for opportunities to apply
+      my skills to real-world problems.
+    </p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">Tetris on RISC-V</span>
+          <span class="project-tag">C · Assembly · Group</span>
+        </div>
+        <p class="project-desc">
+          A fully playable Tetris implementation running on a bare-metal RISC-V microcontroller.
+          The project involved interrupt-driven timer logic, double-buffered VGA rendering, and
+          complete game logic — all without access to a standard library.
+          Built collaboratively, which required careful coordination of hardware-level code across
+          multiple contributors.
+        </p>
+        <p class="project-meta">KTH IS1500 · 2025</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">Webshop Frontend</span>
+          <span class="project-tag">HTML · CSS · JavaScript</span>
+        </div>
+        <p class="project-desc">
+          A responsive e-commerce storefront built from scratch using HTML, CSS and vanilla JavaScript.
+          Focused on clean layout, usability and practical DOM manipulation.
+        </p>
+        <p class="project-meta">Personal project · 2024</p>
+        <!-- <a class="project-link" href="https://github.com/..." target="_blank">View on GitHub →</a> -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-item">Java &amp; OOP<span class="skill-level">Intermediate</span></div>
+      <div class="skill-item">C<span class="skill-level">Intermediate</span></div>
+      <div class="skill-item">RISC-V Assembly<span class="skill-level">Basic</span></div>
+      <div class="skill-item">HTML / CSS / JS<span class="skill-level">Basic</span></div>
+      <div class="skill-item">Git<span class="skill-level">Basic</span></div>
+      <div class="skill-item">Swedish<span class="skill-level">Native</span></div>
+      <div class="skill-item">English<span class="skill-level">Fluent</span></div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="edu-entry">
+      <p class="edu-school">KTH Royal Institute of Technology</p>
+      <p class="edu-detail">M.Sc. Computer Science &amp; Engineering · 2024 – 2029</p>
+      <p class="edu-detail"><a href="https://www.kth.se/utbildning/civilingenjor/informationsteknik" style="color:var(--muted)">kth.se/utbildning/civilingenjor/informationsteknik</a></p>
+    </div>
+    <div class="edu-entry">
+      <p class="edu-school">Värmdö Gymnasium</p>
+      <p class="edu-detail">Information &amp; Media Technology · 2021 – 2024</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Gabriel Ryman · gabberyman05@gmail.com · Updated February 2026</p>
+  </footer>
+
+</div>
+</body>
+</html>
